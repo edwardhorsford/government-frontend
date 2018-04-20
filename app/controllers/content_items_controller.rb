@@ -5,8 +5,8 @@ class ContentItemsController < ApplicationController
   rescue_from GdsApi::HTTPNotFound, with: :error_notfound
   rescue_from GdsApi::HTTPGone, with: :error_410
   rescue_from GdsApi::InvalidUrl, with: :error_notfound
-  rescue_from ActionView::MissingTemplate, with: :error_406
-  rescue_from ActionController::UnknownFormat, with: :error_406
+  # rescue_from ActionView::MissingTemplate, with: :error_406
+  # rescue_from ActionController::UnknownFormat, with: :error_406
   rescue_from PresenterBuilder::RedirectRouteReturned, with: :error_redirect
   rescue_from PresenterBuilder::SpecialRouteReturned, with: :error_notfound
 
@@ -52,7 +52,7 @@ private
   end
 
   def content_item_template
-    @content_item.schema_name
+    "person"
   end
 
   def render_template

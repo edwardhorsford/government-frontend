@@ -29,6 +29,8 @@ private
     end
 
     content_item["schema_name"].classify + "Presenter"
+
+    "PersonPresenter"
   end
 
   def service_sign_in_format?

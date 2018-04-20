@@ -1,0 +1,41 @@
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= render 'govuk_component/title', title: @content_item.title %>
+  </div>
+  <%= render 'shared/translations' %>
+</div>
+
+<div class="grid-row">
+  <div class="column-two-thirds content-bottom-margin">
+    <div class="responsive-bottom-margin">
+      <%= render 'components/figure',
+          src: @content_item.image["url"],
+          alt: @content_item.image["alt_text"],
+          caption: @content_item.image["caption"] if @content_item.image %>
+
+      <%= render "components/contents-list", contents: @content_item.contents %>
+
+      <%= render 'components/heading', text: "Biography", id: "biography", heading_level: 2 %>
+
+      <%= render 'govuk_component/govspeak',
+          content: @content_item.body,
+          direction: page_text_direction %>
+
+      <%= render 'components/heading', text: "Roles", id: "roles", heading_level: 2 %>
+
+      <% @content_item.current_role_appointments.each do |current_role_appointment| %>
+        <%= render 'components/heading', text: current_role_appointment["links"]["role"][0]["title"], id: "roles", heading_level: 3 %>
+
+        <%= render 'govuk_component/govspeak',
+            content: current_role_appointment["links"]["role"][0]["details"]["responsibilities"],
+            direction: page_text_direction %>
+      <% end %>
+
+      <%= render 'components/heading', text: "Previous roles in government", id: "previous", heading_level: 2 %>
+
+      <% @content_item.previous_role_appointments.each do |current_role_appointment| %>
+        <%= render 'components/heading', text: current_role_appointment["links"]["role"][0]["title"], id: "roles", heading_level: 3 %>
+      <% end %>
+    </div>
+  </div>
+</div>
