@@ -65,7 +65,7 @@ module SchemaOrg
     end
 
     def image
-      presenter.image
+      presenter.try(:image)
     end
   end
 end
