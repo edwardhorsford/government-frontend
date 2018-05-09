@@ -57,6 +57,12 @@ class WorldLocationNewsArticlePresenterTest
     test 'presents world locations as part_of' do
       assert_includes presented_item.part_of[0], schema_item['links']['world_locations'][0]['title']
     end
+
+    test 'structured_data' do
+      assert_nothing_raised do
+        presented_item.structured_data
+      end
+    end
   end
 
   class HistoryModePresentedWorldLocationNewsArticle < WorldLocationNewsArticlePresenterTestCase

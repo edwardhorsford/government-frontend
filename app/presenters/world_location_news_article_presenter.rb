@@ -12,7 +12,6 @@ class WorldLocationNewsArticlePresenter < ContentItemPresenter
   end
 
   def structured_data
-    # TODO: implement a schema
-    {}
+    SchemaOrg::NewsArticleSchema.new(self).structured_data
   end
 end
