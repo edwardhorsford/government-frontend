@@ -3,5 +3,9 @@ module ContentItem
     def last_updated
       display_date(content_item["public_updated_at"]) if content_item["public_updated_at"]
     end
+
+    def public_updated_at
+      content_item["public_updated_at"]
+    end
   end
 end
