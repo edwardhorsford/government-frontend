@@ -76,4 +76,11 @@ class DetailedGuidePresenterTest < PresenterTestCase
     }
     assert_equal presented.logo, expected
   end
+
+  test 'structured data' do
+    assert_nothing_raised do
+      presented = presented_item('england-2014-to-2020-european-structural-and-investment-funds')
+      presented.structured_data
+    end
+  end
 end

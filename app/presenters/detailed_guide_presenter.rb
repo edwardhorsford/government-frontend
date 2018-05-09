@@ -7,8 +7,7 @@ class DetailedGuidePresenter < ContentItemPresenter
   include ContentItem::TitleAndContext
 
   def structured_data
-    # TODO: implement a schema
-    {}
+    SchemaOrg::ArticleSchema.new(self).structured_data
   end
 
   def title_and_context
