@@ -26,16 +26,46 @@ module SchemaOrg
             # TODO: change this to a better image, without the URL hard coded.
             "url" => "https://assets.publishing.service.gov.uk/static/opengraph-image-a1f7d89ffd0782738b1aeb0da37842d8bd0addbd724b8e58c3edbc7287cc11de.png",
           },
-        },
-      }
+        }
+      }.merge(image_schema).merge(author_schema)
     end
 
   private
 
     attr_reader :presenter
 
+    def image_schema
+      return {} unless image
+
+      {
+        "image" => [
+          image["url"],
+        ]
+      }
+    end
+
+    def author_schema
+      return {} unless publishing_organisation
+
+      {
+        "author" => {
+          "@type" => "Organization",
+          "name" => publishing_organisation["title"],
+          "url" => Plek.current.website_root + publishing_organisation["base_path"],
+        }
+      }
+    end
+
+    def publishing_organisation
+      presenter.content_item.dig("links", "primary_publishing_organisation").to_a.first
+    end
+
     def page_url
       Plek.current.website_root + presenter.content_item["base_path"]
+    end
+
+    def image
+      presenter.image
     end
   end
 end
